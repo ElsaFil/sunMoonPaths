@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button.sunButton:hover,
+button.moonButton:hover {
+  background-color: cornflowerblue;
+}
+
+button.active {
+  background-color: cornflowerblue;
+  outline: none;
 }
