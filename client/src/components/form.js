@@ -1,26 +1,20 @@
 import React, { Component } from "react";
-import "./App.css";
-import PathView from "./components/pathView";
+import "../App.css";
 
-class App extends Component {
+export default class Form extends Component {
   state = {
-    city: "Berlin",
+    city: "berlin",
     astronomicalBody: "sun"
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-  };
-
   handleCityChange = event => {
-    console.log(`setting ${event.target.name} to "${event.target.value}"`);
     this.setState({
       [event.target.name]: event.target.value
     });
+    this.props.triggerAPICall(event.target.value, this.state.astronomicalBody);
   };
 
   handleAstronomicalBodyChange = event => {
-    console.log(`setting astronomicalBody to "${event.target.name}"`);
     let buttons = document.getElementsByClassName("astronomicalBody");
     for (let button of buttons) {
       if (button.name === event.target.name) {
@@ -32,21 +26,23 @@ class App extends Component {
     this.setState({
       astronomicalBody: event.target.name
     });
+    this.props.triggerAPICall(this.state.city, event.target.name);
   };
 
   componentDidMount = () => {
-    // default selection
+    // default values
     let sunButton = document.getElementById("sun");
     sunButton.classList.add("active");
+    this.props.triggerAPICall(this.state.city, this.state.astronomicalBody);
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
   };
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>Sun - Moon paths</p>
-        </header>
-
+      <React.Fragment>
         <form onSubmit={this.handleSubmit}>
           <section>
             <select
@@ -86,14 +82,7 @@ class App extends Component {
             </button>
           </section>
         </form>
-
-        <PathView
-          city={this.state.city}
-          astronomicalBody={this.state.astronomicalBody}
-        />
-      </div>
+      </React.Fragment>
     );
   }
 }
-
-export default App;
