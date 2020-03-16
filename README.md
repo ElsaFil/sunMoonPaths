@@ -1,3 +1,7 @@
+* Descripiton of the challenge: https://github.com/HendrikW/IH-coding-challenge-march
+* It's possible to use npm commands.
+-----------------------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
